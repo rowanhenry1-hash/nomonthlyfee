@@ -1,3 +1,5 @@
+export type FreeType = "always-free" | "free-with-ads" | "free-tier" | "library-card";
+
 export type Service = {
   slug: string;
   name: string;
@@ -9,6 +11,8 @@ export type Service = {
   honestDifference: string;
   perfectFor: string;
   url: string | null;
+  freeType: FreeType;
+  bestFor?: string;
   urlLabel?: string;
   secondaryUrl?: string;
   secondaryUrlLabel?: string;
@@ -36,7 +40,6 @@ export const categories: Category[] = [
   { slug: "streaming", name: "Streaming", icon: "🎬", description: "Watch movies and TV shows without a streaming subscription." },
   { slug: "music", name: "Music", icon: "🎵", description: "Listen to music without a premium subscription." },
   { slug: "education", name: "Education", icon: "📚", description: "Learn new skills without paying for courses." },
-  { slug: "government", name: "Government Services", icon: "🇨🇦", description: "Services the government provides that you might not know about." },
 ];
 
 export const services: Service[] = [
@@ -58,6 +61,8 @@ export const services: Service[] = [
     honestDifference: "No physical Simplii branches. You use CIBC ATMs and handle everything online or by phone. Customer service wait times can be longer than in-branch banking.",
     perfectFor: "Anyone comfortable with online banking who wants to stop paying a monthly bank fee.",
     url: "https://www.simplii.com",
+    freeType: "always-free",
+    bestFor: "ATM access (3,400+ CIBC ATMs)",
   },
   {
     slug: "tangerine",
@@ -76,6 +81,8 @@ export const services: Service[] = [
     honestDifference: "No branches of its own — uses Scotiabank ATMs. Savings promo rates expire and drop to a low base rate. Set a reminder when your promo ends.",
     perfectFor: "People who want a no-hassle free account from a big-bank-backed brand.",
     url: "https://www.tangerine.ca",
+    freeType: "always-free",
+    bestFor: "Easy setup with a major bank behind it",
   },
   {
     slug: "eq-bank",
@@ -94,6 +101,8 @@ export const services: Service[] = [
     honestDifference: "Fully digital — no branch access, no cheque books. Cheque deposits by app only. Newer bank so some third-party app integrations may lag behind the big five.",
     perfectFor: "People who want their savings to actually earn interest without maintaining a separate account.",
     url: "https://www.eqbank.ca",
+    freeType: "always-free",
+    bestFor: "Earning interest on your everyday balance",
   },
   {
     slug: "alterna-bank",
@@ -111,6 +120,8 @@ export const services: Service[] = [
     honestDifference: "Smaller brand, fewer people have heard of it. Fewer integrations with some budgeting apps. But it's federally regulated and deposit-insured just like the big banks.",
     perfectFor: "People who want to support a credit union model while getting the same features as the big banks.",
     url: "https://www.alternabank.ca",
+    freeType: "always-free",
+    bestFor: "Supporting a credit union model",
   },
 
   // Credit & Taxes
@@ -131,6 +142,7 @@ export const services: Service[] = [
     honestDifference: "Borrowell makes money by showing you loan and credit card offers based on your profile. The credit score and report are real and accurate — the product recommendations are how they pay the bills.",
     perfectFor: "Anyone who wants to keep an eye on their credit without paying for a monitoring service.",
     url: "https://borrowell.com",
+    freeType: "always-free",
   },
   {
     slug: "credit-karma",
@@ -148,6 +160,7 @@ export const services: Service[] = [
     honestDifference: "Same model as Borrowell but pulls from TransUnion instead of Equifax. Worth having both so you see scores from two bureaus.",
     perfectFor: "Use alongside Borrowell for complete two-bureau coverage at zero cost.",
     url: "https://www.creditkarma.ca",
+    freeType: "always-free",
   },
   {
     slug: "wealthsimple-tax",
@@ -165,6 +178,7 @@ export const services: Service[] = [
     honestDifference: "Handles most standard returns perfectly. Complex situations like rental properties, self-employment income, or capital gains on multiple investments may need a double-check. Not a replacement for an accountant if your taxes are genuinely complicated.",
     perfectFor: "Anyone with a straightforward to moderately complex tax return who doesn't want to pay H&R Block.",
     url: "https://www.wealthsimple.com/en-ca/tax",
+    freeType: "always-free",
   },
 
   // Investing
@@ -184,6 +198,7 @@ export const services: Service[] = [
     honestDifference: "Free for Canadian-dollar trades. US stock trades get hit with a 1.5% foreign exchange fee each way unless you upgrade to the paid Plus tier ($10/month). If you mainly buy Canadian ETFs, it's genuinely free. If you trade US stocks frequently, the FX fees add up fast.",
     perfectFor: "Canadians investing in Canadian stocks and ETFs who want to avoid per-trade commissions.",
     url: "https://www.wealthsimple.com/en-ca/trade",
+    freeType: "always-free",
   },
 
   // Cloud Storage
@@ -203,6 +218,7 @@ export const services: Service[] = [
     honestDifference: "The 15 GB is shared across Drive, Gmail, and Google Photos. A full inbox or lots of photos eats into your space. Google also uses your data for ad targeting across their products.",
     perfectFor: "Most people — 15 GB handles documents and important files easily. Hit the limit? Delete old Gmail attachments first.",
     url: "https://drive.google.com",
+    freeType: "free-tier",
   },
   {
     slug: "proton-drive",
@@ -220,6 +236,7 @@ export const services: Service[] = [
     honestDifference: "Slower upload/download than Google Drive. Smaller free tier (5 GB vs 15 GB). No built-in document editing. But nobody — including Proton — can read your files.",
     perfectFor: "Anyone storing sensitive documents who wants real privacy, not just a promise.",
     url: "https://proton.me/drive",
+    freeType: "free-tier",
   },
   {
     slug: "microsoft-onedrive",
@@ -237,6 +254,7 @@ export const services: Service[] = [
     honestDifference: "5 GB fills quickly if you use it for real backup. The free Office web apps are basic compared to the desktop versions but handle most tasks.",
     perfectFor: "Windows users who want cloud sync built into their system without paying for Microsoft 365.",
     url: "https://onedrive.live.com",
+    freeType: "free-tier",
   },
 
   // Office & Productivity
@@ -257,6 +275,7 @@ export const services: Service[] = [
     honestDifference: "The interface feels dated compared to Microsoft Office. Complex Excel macros and fancy PowerPoint animations sometimes break when converting between formats. For writing documents, basic spreadsheets, and simple presentations, it works perfectly.",
     perfectFor: "Anyone doing normal document work who doesn't need real-time collaboration or advanced Excel features.",
     url: "https://www.libreoffice.org",
+    freeType: "always-free",
   },
   {
     slug: "google-docs",
@@ -275,6 +294,7 @@ export const services: Service[] = [
     perfectFor: "Teams, students, and anyone who collaborates on documents. The best free option if multiple people edit the same file.",
     url: "https://docs.google.com",
     urlLabel: "Open Google Docs",
+    freeType: "always-free",
   },
 
   // Design, Photo & Video
@@ -295,6 +315,7 @@ export const services: Service[] = [
     honestDifference: "The learning curve is steep and the interface is less intuitive than Photoshop. Plugin ecosystem is smaller. But it handles photo editing, compositing, and image manipulation at a professional level.",
     perfectFor: "Anyone who needs serious image editing and is willing to learn a different interface.",
     url: "https://www.gimp.org",
+    freeType: "always-free",
   },
   {
     slug: "inkscape",
@@ -313,6 +334,7 @@ export const services: Service[] = [
     honestDifference: "Slower with very large files. Exporting to .ai format is imperfect. The interface has more of a learning curve than Illustrator. But for logos, icons, illustrations, and print-ready vector work, it delivers.",
     perfectFor: "Designers and hobbyists creating logos, illustrations, or any scalable graphics.",
     url: "https://inkscape.org",
+    freeType: "always-free",
   },
   {
     slug: "davinci-resolve",
@@ -328,9 +350,10 @@ export const services: Service[] = [
       "Visual effects",
       "Media management",
     ],
-    honestDifference: "The free tier limits export to 1080p (not 4K) and locks some advanced color and audio tools. But the editing, color grading, and effects tools available for free are genuinely professional-grade. Some Hollywood films are edited in Resolve.",
+    honestDifference: "The free tier supports up to 4K Ultra HD export but locks some advanced color and audio tools. The editing, color grading, and effects tools available for free are genuinely professional-grade. Some Hollywood films are edited in Resolve.",
     perfectFor: "Anyone editing video — from YouTube creators to indie filmmakers. One of the best free software products that exists.",
     url: "https://www.blackmagicdesign.com/products/davinciresolve",
+    freeType: "always-free",
   },
   {
     slug: "shotcut",
@@ -348,6 +371,7 @@ export const services: Service[] = [
     honestDifference: "Less powerful than DaVinci Resolve but much easier to learn. Good for basic to intermediate editing. Can feel sluggish on complex projects.",
     perfectFor: "Beginners and casual editors who want something simpler than DaVinci Resolve.",
     url: "https://www.shotcut.org",
+    freeType: "always-free",
   },
   {
     slug: "audacity",
@@ -365,6 +389,7 @@ export const services: Service[] = [
     honestDifference: "The interface looks like it's from 2005. But it does everything most people need for audio editing. Podcasters, musicians, and students have relied on it for decades.",
     perfectFor: "Podcasters, musicians, and anyone recording or editing audio who doesn't need a professional studio setup.",
     url: "https://www.audacityteam.org",
+    freeType: "always-free",
   },
   {
     slug: "blender",
@@ -383,6 +408,7 @@ export const services: Service[] = [
     honestDifference: "The learning curve is massive. But Blender is genuinely world-class software used in film, game development, and architecture. It's not a compromise — it's an industry tool that happens to be free.",
     perfectFor: "Anyone serious about 3D work. Students, indie game developers, artists, and studios.",
     url: "https://www.blender.org",
+    freeType: "always-free",
   },
   {
     slug: "krita",
@@ -401,6 +427,7 @@ export const services: Service[] = [
     honestDifference: "Not a photo editor — it's specifically for painting and illustration. Better drawing tools than GIMP, more art-focused than Photoshop.",
     perfectFor: "Digital artists, illustrators, and concept artists who want dedicated painting software.",
     url: "https://krita.org",
+    freeType: "always-free",
   },
 
   // PDF Tools
@@ -421,6 +448,7 @@ export const services: Service[] = [
     honestDifference: "Does the 3–4 things most people actually need Acrobat for. Cannot edit text inside a PDF or create fillable forms — that's the paid feature you're giving up.",
     perfectFor: "Anyone who occasionally needs to combine PDFs, pull out specific pages, or reorganize a document.",
     url: "https://pdfsam.org",
+    freeType: "always-free",
   },
 
   // Email
@@ -442,6 +470,7 @@ export const services: Service[] = [
     perfectFor: "Most people. The default choice for a reason.",
     url: "https://mail.google.com",
     urlLabel: "Open Gmail",
+    freeType: "always-free",
   },
   {
     slug: "proton-mail",
@@ -456,10 +485,11 @@ export const services: Service[] = [
       "No data mining",
       "No ads",
     ],
-    honestDifference: "Free tier has 500 MB–1 GB storage. That's tight — you'll need to delete old emails or pay to upgrade. Sending encrypted mail to non-Proton users requires them to click a link and enter a password.",
+    honestDifference: "Free tier starts at 500 MB but expands to 1 GB by completing Proton's onboarding checklist. Still tight — you'll need to delete old emails regularly or pay to upgrade. Sending encrypted mail to non-Proton users requires them to click a link and enter a password.",
     perfectFor: "Anyone who values email privacy — journalists, activists, or just people who don't want their inbox scanned.",
     url: "https://proton.me/mail",
     urlLabel: "Open Proton Mail",
+    freeType: "free-tier",
   },
   {
     slug: "zoho-mail",
@@ -478,6 +508,7 @@ export const services: Service[] = [
     honestDifference: "The free plan doesn't include IMAP/POP access (you must use Zoho's apps or webmail). Less polished than Gmail. But it's the only free option for custom domain email.",
     perfectFor: "Freelancers or tiny businesses who want a professional email address without paying for Google Workspace.",
     url: "https://www.zoho.com/mail",
+    freeType: "always-free",
   },
 
   // Communication
@@ -497,6 +528,7 @@ export const services: Service[] = [
     honestDifference: "Smaller user base than WhatsApp or iMessage. You may need to convince contacts to install it. But the encryption is genuinely best-in-class and it's run by a nonprofit.",
     perfectFor: "Anyone who wants private conversations. Especially valuable for sensitive personal or professional communication.",
     url: "https://signal.org",
+    freeType: "always-free",
   },
   {
     slug: "discord",
@@ -515,6 +547,7 @@ export const services: Service[] = [
     honestDifference: "Originally designed for gaming communities, so the branding skews young. But the features match or beat Slack's paid tier for most use cases. No message history limits on the free plan.",
     perfectFor: "Communities, friend groups, small teams, and anyone who wants Slack-like features without Slack's pricing.",
     url: "https://discord.com",
+    freeType: "always-free",
   },
 
   // Passwords & Security
@@ -535,10 +568,11 @@ export const services: Service[] = [
     honestDifference: "The free tier is so complete that most people never need to upgrade. The paid tier ($10/year — not $36) adds emergency access and advanced 2FA. The interface is slightly less polished than 1Password but functionally equal.",
     perfectFor: "Everyone. Seriously. If you reuse passwords or store them in your browser, switch to this today.",
     url: "https://bitwarden.com",
+    freeType: "always-free",
   },
   {
-    slug: "windows-defender",
-    name: "Windows Defender",
+    slug: "microsoft-defender-antivirus",
+    name: "Microsoft Defender Antivirus",
     category: "Passwords & Security",
     categorySlug: "security",
     replacesWhat: "Norton ($80–$120/year), McAfee ($90–$120/year)",
@@ -550,10 +584,11 @@ export const services: Service[] = [
       "Ransomware protection",
       "Parental controls",
     ],
-    honestDifference: "Independent testing labs now rank Windows Defender alongside paid antivirus products. It's no longer the weak default it was a decade ago. Most cybersecurity professionals say you don't need third-party antivirus anymore.",
+    honestDifference: "Independent testing labs now rank Microsoft Defender alongside paid antivirus products. It's no longer the weak default it was a decade ago. Most cybersecurity professionals say you don't need third-party antivirus anymore.",
     perfectFor: "Every Windows user. Stop paying for Norton.",
     url: "https://www.microsoft.com/en-ca/windows/comprehensive-security",
     urlLabel: "Learn about Windows Security",
+    freeType: "always-free",
   },
 
   // Backup
@@ -573,6 +608,7 @@ export const services: Service[] = [
     honestDifference: "Requires more initial setup than Backblaze (which is truly set-and-forget). You need to choose where to store backups and configure the schedule. But once set up, it runs reliably in the background.",
     perfectFor: "Anyone willing to spend 30 minutes on setup to save $100/year on backup services.",
     url: "https://www.duplicati.com",
+    freeType: "always-free",
   },
 
   // Streaming
@@ -592,6 +628,7 @@ export const services: Service[] = [
     honestDifference: "Smaller library than Netflix with no major current exclusives or original blockbusters. But it has a surprising back-catalog — older films, cult classics, and titles that rotate off the paid platforms. Think of it as the library's DVD section: no new releases on day one, but plenty of great finds.",
     perfectFor: "Anyone who watches casually and doesn't need the latest releases the day they drop.",
     url: "https://tubitv.com",
+    freeType: "free-with-ads",
   },
   {
     slug: "pluto-tv",
@@ -609,6 +646,7 @@ export const services: Service[] = [
     honestDifference: "Feels like cable from 2005 — you're channel surfing, not picking specific shows. The channels are themed rather than on-demand. Good for background watching, not destination viewing.",
     perfectFor: "People who miss flipping through channels, or want something on in the background without choosing.",
     url: "https://pluto.tv",
+    freeType: "free-with-ads",
   },
   {
     slug: "cbc-gem",
@@ -627,6 +665,7 @@ export const services: Service[] = [
     honestDifference: "The free tier is ad-supported with a smaller library than the $6/month premium tier. It's Canadian-focused — you won't find Hollywood blockbusters here. But CBC originals like Schitt's Creek, Kim's Convenience, and Heartland are included.",
     perfectFor: "Canadians who want local content and news without another subscription.",
     url: "https://gem.cbc.ca",
+    freeType: "free-tier",
   },
   {
     slug: "kanopy",
@@ -644,6 +683,7 @@ export const services: Service[] = [
     honestDifference: "Not competing with Netflix — competing with art house theatres. The catalog is curated toward quality independent and international cinema, documentaries, and educational content. Most libraries limit borrows to 5–10 per month.",
     perfectFor: "Film lovers, documentary fans, students, and anyone with a public library card who wants high-quality content.",
     url: "https://www.kanopy.com",
+    freeType: "library-card",
   },
   {
     slug: "plex",
@@ -660,6 +700,7 @@ export const services: Service[] = [
     honestDifference: "Smaller free catalog than Tubi. The unique value is that Plex also lets you stream your own media files from a home server. The free streaming is a nice bonus on top of that.",
     perfectFor: "People who already use Plex for personal media, or anyone who wants yet another free source of content.",
     url: "https://www.plex.tv",
+    freeType: "free-with-ads",
   },
 
   // Music
@@ -680,6 +721,7 @@ export const services: Service[] = [
     perfectFor: "Casual listeners and anyone who listens mostly on desktop or doesn't mind shuffle mode on mobile.",
     url: "https://www.spotify.com/ca-en/free",
     urlLabel: "Open Spotify",
+    freeType: "free-with-ads",
   },
   {
     slug: "youtube-music-free",
@@ -697,6 +739,7 @@ export const services: Service[] = [
     perfectFor: "People who want the biggest possible music library and don't mind ads.",
     url: "https://music.youtube.com",
     urlLabel: "Open YouTube Music",
+    freeType: "free-with-ads",
   },
   {
     slug: "cbc-listen",
@@ -713,6 +756,7 @@ export const services: Service[] = [
     honestDifference: "Publicly funded, so no ads in the app. The podcast selection is surprisingly good. Not a music streaming service — it's radio and talk content.",
     perfectFor: "Canadians who want quality radio, news, and podcasts without ads.",
     url: "https://www.cbc.ca/listen",
+    freeType: "always-free",
   },
 
   // Education
@@ -732,6 +776,7 @@ export const services: Service[] = [
     honestDifference: "No premium tier, no ads, no hidden fees. This is a nonprofit doing exactly what it says. Used in actual schools worldwide. One of the best things on the internet.",
     perfectFor: "Students, parents, lifelong learners, and anyone who wants to understand something better.",
     url: "https://www.khanacademy.org",
+    freeType: "always-free",
   },
   {
     slug: "coursera-edx-audit",
@@ -752,6 +797,7 @@ export const services: Service[] = [
     urlLabel: "Open Coursera",
     secondaryUrl: "https://www.edx.org",
     secondaryUrlLabel: "Open edX",
+    freeType: "free-tier",
   },
   {
     slug: "duolingo-free",
@@ -769,6 +815,7 @@ export const services: Service[] = [
     honestDifference: "Free tier shows ads and limits you with \"hearts\" (lives) that run out when you make mistakes. Won't make you fluent on its own — it's best for building vocabulary and basic grammar. The paid tier ($10/month) removes hearts and ads but isn't necessary to learn.",
     perfectFor: "Beginners starting a new language who want a daily habit without paying for classes.",
     url: "https://www.duolingo.com",
+    freeType: "free-tier",
   },
   {
     slug: "libby-hoopla",
@@ -788,44 +835,7 @@ export const services: Service[] = [
     urlLabel: "Open Libby",
     secondaryUrl: "https://www.hoopladigital.com",
     secondaryUrlLabel: "Open hoopla",
-  },
-
-  // Government
-  {
-    slug: "811-telehealth",
-    name: "811 Telehealth",
-    category: "Government Services",
-    categorySlug: "government",
-    replacesWhat: "Walk-in clinic visits for basic health questions",
-    pitchLine: "Talk to a registered nurse about any non-emergency health question, 24/7 — for no monthly fee.",
-    features: [
-      "24/7 availability",
-      "Registered nurses",
-      "Available in all provinces",
-      "No appointment needed",
-    ],
-    honestDifference: "Not a replacement for your doctor. But for \"should I go to the ER?\" or \"is this normal?\" questions at 2 AM, it's invaluable.",
-    perfectFor: "Anyone with a health question who doesn't want to wait for a doctor's appointment or sit in a walk-in clinic.",
-    url: null,
-    urlLabel: "Dial 811 from anywhere in Canada",
-  },
-  {
-    slug: "job-bank",
-    name: "Job Bank",
-    category: "Government Services",
-    categorySlug: "government",
-    replacesWhat: "Paid job boards, resume services",
-    pitchLine: "Canada's official job search tool with resume builder and market insights — for no monthly fee.",
-    features: [
-      "Job postings from across Canada",
-      "Resume builder",
-      "Job market reports",
-      "Job alerts",
-      "Wage information by occupation and region",
-    ],
-    honestDifference: "Not as slick as Indeed or LinkedIn. But the wage data and job market reports are uniquely useful — they tell you what jobs actually pay in your specific city.",
-    perfectFor: "Job seekers who want accurate Canadian wage data alongside their job search.",
-    url: "https://www.jobbank.gc.ca",
+    freeType: "library-card",
   },
 ];
 

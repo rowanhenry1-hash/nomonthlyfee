@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import FreeTypeBadge from "../components/FreeTypeBadge";
 import { categories, getCategory, getServicesForCategory } from "../data/services";
 
 export async function generateStaticParams() {
@@ -68,12 +69,20 @@ export default async function CategoryPage({
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
-                  <h2 className="font-semibold text-gray-900 text-base sm:text-lg group-hover:text-green-700 transition-colors">
-                    {service.name}
-                  </h2>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h2 className="font-semibold text-gray-900 text-base sm:text-lg group-hover:text-green-700 transition-colors">
+                      {service.name}
+                    </h2>
+                    <FreeTypeBadge type={service.freeType} />
+                  </div>
                   <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
                     Replaces: {service.replacesWhat}
                   </p>
+                  {service.bestFor && (
+                    <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+                      Best for: {service.bestFor}
+                    </p>
+                  )}
                   <p className="text-sm sm:text-base text-gray-600 mt-2 leading-snug">
                     {service.pitchLine}
                   </p>

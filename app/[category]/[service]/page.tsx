@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
+import FreeTypeBadge from "../../components/FreeTypeBadge";
 import { services, getCategory, getService } from "../../data/services";
 
 export async function generateStaticParams() {
@@ -57,15 +58,27 @@ export default async function ServicePage({
           <span className="text-gray-600">{s.name}</span>
         </nav>
 
-        {/* Service name */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-          {s.name}
-        </h1>
+        {/* Service name + badge */}
+        <div className="flex items-start gap-3 flex-wrap">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+            {s.name}
+          </h1>
+          <span className="mt-1.5 sm:mt-2.5">
+            <FreeTypeBadge type={s.freeType} />
+          </span>
+        </div>
 
         {/* Replaces */}
         <p className="mt-2 text-sm sm:text-base text-gray-400">
           You might be paying for: <span className="text-gray-600">{s.replacesWhat}</span>
         </p>
+
+        {/* Best for (banking only) */}
+        {s.bestFor && (
+          <p className="mt-1 text-sm sm:text-base text-gray-500">
+            Best for: {s.bestFor}
+          </p>
+        )}
 
         {/* Pitch line */}
         <p className="mt-5 text-base sm:text-lg text-gray-700 leading-relaxed border-l-4 border-green-500 pl-4">
